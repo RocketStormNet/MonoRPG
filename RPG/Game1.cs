@@ -4,6 +4,15 @@ using Microsoft.Xna.Framework.Input;
 
 namespace RPG
 {
+
+    enum Dir
+    {
+        Down,
+        Up,
+        Left,
+        Right
+    }
+
     public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
@@ -23,6 +32,8 @@ namespace RPG
 
         Texture2D heart_Sprite;
         Texture2D bullet_Sprite;
+
+        Player player = new Player();
 
         public Game1()
         {
@@ -81,7 +92,11 @@ namespace RPG
         {
             GraphicsDevice.Clear(Color.ForestGreen);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+
+            spriteBatch.Draw(player_Sprite, player.Position, Color.White);
+
+            spriteBatch.End();
 
             base.Draw(gameTime);
         }
