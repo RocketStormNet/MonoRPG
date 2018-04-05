@@ -72,7 +72,10 @@ namespace RPG
             heart_Sprite = Content.Load<Texture2D>("Misc/heart");
             bullet_Sprite = Content.Load<Texture2D>("Misc/bullet");
 
-            player.anim = new AnimatedSprite(playerDown, 1, 4);
+            player.animations[0] = new AnimatedSprite(playerDown, 1, 4);
+            player.animations[1] = new AnimatedSprite(playerUp, 1, 4);
+            player.animations[2] = new AnimatedSprite(playerLeft, 1, 4);
+            player.animations[3] = new AnimatedSprite(playerRight, 1, 4);
         }
 
         protected override void UnloadContent()
@@ -94,7 +97,7 @@ namespace RPG
         {
             GraphicsDevice.Clear(Color.ForestGreen);
 
-            player.anim.Draw(spriteBatch, player.Position);
+            player.anim.Draw(spriteBatch, new Vector2(player.Position.X - 48, player.Position.Y - 48));
 
             spriteBatch.Begin();
 
