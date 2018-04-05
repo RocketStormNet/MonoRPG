@@ -12,6 +12,8 @@ namespace RPG
         private Dir direction = Dir.Down;
         private bool isMoving = false;
 
+        public AnimatedSprite anim;
+
         public int Health { get; set; }
 
         public Vector2 Position
@@ -36,6 +38,8 @@ namespace RPG
         {
             KeyboardState kState = Keyboard.GetState();
             float dt = (float)gameTime.ElapsedGameTime.TotalSeconds;
+
+            anim.Update(gameTime);
 
             isMoving = false;
 
