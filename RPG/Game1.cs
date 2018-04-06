@@ -90,6 +90,11 @@ namespace RPG
 
             player.Update(gameTime);
 
+            foreach (Projectile proj in Projectile.projectiles)
+            {
+                proj.Update(gameTime);
+            }
+
             base.Update(gameTime);
         }
 
@@ -101,7 +106,10 @@ namespace RPG
 
             spriteBatch.Begin();
 
-            //spriteBatch.Draw(player_Sprite, player.Position, Color.White);
+            foreach (Projectile proj in Projectile.projectiles)
+            {
+                spriteBatch.Draw(bullet_Sprite, new Vector2(proj.Position.X - proj.Radius, proj.Position.Y - proj.Radius), Color.White);
+            }
 
             spriteBatch.End();
 
