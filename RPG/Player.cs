@@ -8,7 +8,7 @@ namespace RPG
     {
         private Vector2 position = new Vector2(200, 200);
         private int health = 3;
-        private int speed = 10;
+        private int speed = 300;
         private Dir direction = Dir.Down;
         private bool isMoving = false;
         private KeyboardState kStateOld = Keyboard.GetState();
@@ -102,19 +102,37 @@ namespace RPG
 
             if (isMoving)
             {
+                Vector2 tempPos = position;
+
                 switch (direction)
                 {
                     case Dir.Right:
-                        position.X += speed + dt;
+                        tempPos.X += speed + dt;
+                        if (!Obstacle.didCollide(tempPos, radius))
+                        {
+                            position.X += speed * dt;
+                        }
                         break;
                     case Dir.Left:
-                        position.X -= speed + dt;
+                        tempPos.X -= speed + dt;
+                        if (!Obstacle.didCollide(tempPos, radius))
+                        {
+                            position.X -= speed * dt;
+                        }
                         break;
                     case Dir.Up:
-                        position.Y -= speed + dt;
+                        tempPos.Y -= speed + dt;
+                        if (!Obstacle.didCollide(tempPos, radius))
+                        {
+                            position.Y -= speed * dt;
+                        }
                         break;
                     case Dir.Down:
-                        position.Y += speed + dt;
+                        tempPos.Y += speed + dt;
+                        if (!Obstacle.didCollide(tempPos, radius))
+                        {
+                            position.Y += speed * dt;
+                        }
                         break;
                     default:
                         break;
